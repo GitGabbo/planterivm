@@ -9,12 +9,15 @@ public class Portal : MonoBehaviour
     GameObject[] celestials;
     int count;
     bool forward;
+    Dashboard dashboard;
 
     void Start()
     {
         count = int.Parse(this.name[9].ToString());
         forward = this.name[7] == 'b' ? false : true;
         celestials = GameObject.FindGameObjectsWithTag("Celestial");
+        dashboard = GetComponent<Dashboard>();
+        dashboard.SetInfo(0);
     }
 
     void OnTriggerEnter(Collider other)
@@ -44,17 +47,21 @@ public class Portal : MonoBehaviour
                 foreach (GameObject celestial in celestials)
                 {
                     celestial.transform.position = new Vector3(celestial.transform.position.x - celestialOffset, celestial.transform.position.y, celestial.transform.position.z);
+                    if (celestial.GetComponent<ToggleDashboard>()) celestial.GetComponent<ToggleDashboard>().enabled = false;
                 }
             } else
             {
                 foreach (GameObject celestial in celestials)
                 {
                     celestial.transform.position = new Vector3(celestial.transform.position.x - celestialOffset, celestial.transform.position.y, celestial.transform.position.z);
+                    if (celestial.GetComponent<ToggleDashboard>()) celestial.GetComponent<ToggleDashboard>().enabled = false;
                 }
             }
             other.transform.position = new Vector3(celestials[newIndex].transform.position.x, other.transform.position.y, portal.transform.position.z - 1);
             other.transform.LookAt(celestials[newIndex].gameObject.transform);
             other.transform.Rotate(0, 180, 0);
+            celestials[newIndex].GetComponent<ToggleDashboard>().enabled = true;
+            dashboard.SetInfo(newIndex);
         }
     }
 }

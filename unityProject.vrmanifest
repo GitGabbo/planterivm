@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.provaplanetarium.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\varla\\Desktop\\Planetarivm\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "C:\\Users\\varla\\Desktop\\Planetarivm\\Planetarivm\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "Provaplanetarium [Testing]"
